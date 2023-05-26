@@ -31,6 +31,7 @@ namespace BigSchool.Controllers
         {
             //HeHe
             //Hehe
+            //Hehe
             if(!ModelState.IsValid)
             {
                 viewModel.Categories = _context.Categories.ToList();
