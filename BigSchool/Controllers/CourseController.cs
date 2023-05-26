@@ -29,6 +29,8 @@ namespace BigSchool.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CourseViewModel viewModel)
         {
+            //HeHe
+            //Hehe
             if(!ModelState.IsValid)
             {
                 viewModel.Categories = _context.Categories.ToList();
