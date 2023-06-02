@@ -47,7 +47,6 @@ namespace BigSchool.Controllers
             _context.Courses.Add(course);
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
-
         }
     }
 }
