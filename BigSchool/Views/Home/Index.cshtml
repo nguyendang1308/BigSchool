@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BigSchool.Models.Course>
+﻿@model BigSchool.ViewModels.CourseViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
 </head>
 <ul class="course">
-    @foreach(var course in Model)
+    @foreach(var course in Model.UpcomingCourses)
             {
                 <li>
                     <div class="date">
@@ -21,28 +21,53 @@
                     <div class="details">
                         <span class="lecturer">
                             @course.Lecturer.Name
+                            @if (Model.ShowAction)
+                            {
+                                <button class="btn btn-link btn-sm js-toggle-attendance">Follow</button>
+                            }
                         </span>
                         <span class="category">
-                            @course.Category.Name   
+                            @course.Category.Name
                         </span>
-                        <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
+                        @if (Model.ShowAction)
+                        {
+                            <button data-course-id="@course.Id" class="btn btn-default btn-secondary btn-sm js-toggle-attendance">Going?</button>
+                        }
                     </div>
                 </li>
             }
 </ul>
 
-@section scripts {
+@section scripts 
+{
     <script>
         $(document).ready(function () {
-            $(".js-toggle-attendance").click(function (e)){
-                var button = $(e.target);
-                $.post("/api/attendances", { courseId: button.attr("data-course-id") }).done(function () {
-                    button.removeClass("btn-default").addClass("btn-into").text("Going")
-                })
+            $(".js-toggle-attendance").click(function (e) {
+                const button = $(e.target);
+                $.post("/api/attendances", { courseId: button.attr("data-course-id") })
+                    .done(function () {
+                        if (button.hasClass("btn-secondary")) {
+                            button
+                                .removeClass("btn-secondary")
+                                .addClass("btn-info")
+                                .text("Going");
+                        }
+
+                    })
                     .fail(function () {
-                        alert("Something failed");
+                        alert("Something failed!");
+                    });
+            });
+            $(".js-toggle-follow").click(function (e) {
+                const button = $(e.target);
+                $.post("/api/followings", { followeeId: button.attr("data-user-id") })
+                    .done(function () {
+                        button.text("Following");
+                    })
+                    .fail(function () {
+                        alert("Something failed!");
                     });
             });
         });
     </script>
-    }
+}

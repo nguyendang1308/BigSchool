@@ -181,9 +181,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\FollowingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DTO\AttendanceDto.cs" />
+    <Compile Include="DTO\FollowingDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +209,14 @@
     <Compile Include="Migrations\202306020223488_AddAttendance.designer.cs">
       <DependentUpon>202306020223488_AddAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306041240268_AddFollowingsTable.cs" />
+    <Compile Include="Migrations\202306041240268_AddFollowingsTable.designer.cs">
+      <DependentUpon>202306041240268_AddFollowingsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306051514318_AddIsCanceledColumnToCourse.cs" />
+    <Compile Include="Migrations\202306051514318_AddIsCanceledColumnToCourse.designer.cs">
+      <DependentUpon>202306051514318_AddIsCanceledColumnToCourse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -214,6 +224,7 @@
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Following.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -294,10 +305,14 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Course\Create.cshtml" />
+    <Content Include="Views\Course\Attending.cshtml" />
+    <Content Include="Views\Course\Mine.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Attendances\" />
+    <Folder Include="Views\Followings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -341,6 +356,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306020223488_AddAttendance.resx">
       <DependentUpon>202306020223488_AddAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306041240268_AddFollowingsTable.resx">
+      <DependentUpon>202306041240268_AddFollowingsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306051514318_AddIsCanceledColumnToCourse.resx">
+      <DependentUpon>202306051514318_AddIsCanceledColumnToCourse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
