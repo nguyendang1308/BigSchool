@@ -28,9 +28,33 @@
                     </div>
                     <div class="action">
                         <a href="@Url.Action("Edit","Course",new {id = course.Id})">Edit</a>
-                        <a href="">Delete</a>
+                        <a href="#" class="js-cancle-course" data-course-id="@course.Id">Delete</a>
                     </div>
                 </li>
             }
 </ul>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-cancle-course").click(function (e) {
+                e.preventDefault();
+                var link = $(e.target);
+                bootbox.confirm("Are you sure to cancle?", function () {
+                    $.ajax({
+                        url: "/api/courses/" + link.attr("data-course-id"),
+                        method: "DELETE"
+                    }).done(function () {
+                        link.parents("li").fadeOut(function () {
+                            $(this).remove();
+                        });
+                    }).fail(function () {
+                        alert("Something failed!");
+                    });
+                });
+            });
+        });
+    </script>
+}
 
